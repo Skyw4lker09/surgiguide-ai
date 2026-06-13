@@ -4,7 +4,10 @@ import Dashboard from '../components/Dashboard';
 import ChatInterface from '../components/ChatInterface';
 import { AlertCircle, Terminal, HelpCircle, BookOpen, Presentation, Compass, Play } from 'lucide-react';
 
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000';
+const rawApiUrl = import.meta.env.VITE_API_URL || 'http://localhost:8000';
+const API_BASE_URL = rawApiUrl.startsWith('http://') || rawApiUrl.startsWith('https://') 
+  ? rawApiUrl 
+  : `https://${rawApiUrl}`;
 
 export default function Home() {
   const [activeTab, setActiveTab] = useState('dashboard');
