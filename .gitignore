@@ -1,0 +1,19 @@
+# Git Ignore Configuration for SurgiGuide AI
+
+# Python Backend Ignored Files
+backend/.env
+backend/.venv/
+backend/__pycache__/
+backend/*.pyc
+backend/.pytest_cache/
+
+# Node.js Frontend Ignored Files
+frontend/node_modules/
+frontend/dist/
+frontend/.eslintcache
+
+# Editor & System Ignored Files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

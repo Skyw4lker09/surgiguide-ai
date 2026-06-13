@@ -1,0 +1,28 @@
+# Render Blueprint Specification for SurgiGuide AI
+# To deploy, simply link your GitHub repo containing this folder to Render.
+services:
+  # 1. FastAPI Backend Service (Web Service)
+  - type: web
+    name: surgiguide-ai-backend
+    runtime: python
+    rootDir: backend
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: GEMINI_API_KEY
+        sync: false # You will fill this in on the Render Dashboard
+      - key: PORT
+        value: 8000
+
+  # 2. React Frontend Static Site
+  - type: static
+    name: surgiguide-ai-frontend
+    rootDir: frontend
+    buildCommand: npm install && npm run build
+    publishDir: dist
+    envVars:
+      - key: VITE_API_URL
+        fromService:
+          name: surgiguide-ai-backend
+          type: web
+          property: url
