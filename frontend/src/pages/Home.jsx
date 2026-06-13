@@ -5,9 +5,13 @@ import ChatInterface from '../components/ChatInterface';
 import { AlertCircle, Terminal, HelpCircle, BookOpen, Presentation, Compass, Play } from 'lucide-react';
 
 const rawApiUrl = import.meta.env.VITE_API_URL || 'http://localhost:8000';
-const API_BASE_URL = rawApiUrl.startsWith('http://') || rawApiUrl.startsWith('https://') 
+let formattedUrl = rawApiUrl.startsWith('http://') || rawApiUrl.startsWith('https://') 
   ? rawApiUrl 
   : `https://${rawApiUrl}`;
+if (formattedUrl.endsWith('/')) {
+  formattedUrl = formattedUrl.slice(0, -1);
+}
+const API_BASE_URL = formattedUrl;
 
 export default function Home() {
   const [activeTab, setActiveTab] = useState('dashboard');
