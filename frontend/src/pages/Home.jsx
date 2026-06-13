@@ -122,7 +122,7 @@ export default function Home() {
         content: `⚠️ **Error**: Could not connect to the backend server or the Gemini API.\n\n${
           apiKeyMissing 
           ? "The `GEMINI_API_KEY` environment variable is not configured. Please add your key to `backend/.env` and restart the backend server." 
-          : "Please ensure the FastAPI backend is running on `http://localhost:8000` and has a valid API key."
+          : `Please ensure the FastAPI backend is running on **${API_BASE_URL}** and has a valid API key.`
         }` 
       };
       setMessages(prev => ({
@@ -173,7 +173,7 @@ export default function Home() {
         content: `⚠️ **Error**: Failed to initialize tab.\n\n${
           apiKeyMissing 
           ? "The `GEMINI_API_KEY` is missing. Configure it in `backend/.env`." 
-          : "Ensure FastAPI backend is running on port 8000."
+          : `Ensure FastAPI backend is running on **${API_BASE_URL}**.`
         }` 
       };
       setMessages(prev => ({
@@ -207,7 +207,7 @@ export default function Home() {
           <h2 className="header-title">{getHeaderTitle()}</h2>
           <div className="header-status">
             <div className={`status-dot ${backendOnline ? 'online' : 'offline'}`}></div>
-            <span>Backend: {backendOnline ? 'Online' : 'Offline'}</span>
+            <span>Backend: {backendOnline ? 'Online' : 'Offline'} ({API_BASE_URL})</span>
           </div>
         </header>
 
